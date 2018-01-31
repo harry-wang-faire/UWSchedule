@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="style.css" rel="stylesheet">
+     <script type="text/javascript" src = "script.js"></script>
+    </head>
+    <body>
+        <div id="selection">
+<p>Please input the number of the course you are going to take</p>
+<select id = "NumCourse" onchange="DisplayCourseNum();">
+     <option disabled selected value> -- select a number -- </option>
+     <option value = "1"> 1</option>
+     <option value = "2"> 2</option>
+     <option value = "3"> 3</option>
+     <option value = "4"> 4</option>
+     <option value = "5"> 5</option>
+     <option value = "6"> 6</option>
+     <option value = "7"> 7</option>
+</select>
+            </div>
+        <div id="getcourse-l">
+        <form id="courselist">
+            <div id="class1" class="courses">
+            <p>course id:</p>
+            <input type="text" id="put1">
+            </div>
+                        <div id="class2"  class="courses">
+            <p>course id:</p>
+            <input type="text" id="put2">
+            </div>
+                        <div id="class3"  class="courses">
+            <p>course id:</p>
+            <input type="text" id="put3">
+            </div>
+                        <div id="class4"  class="courses">
+            <p>course id:</p>
+            <input type="text" id="put4">
+            </div>
+                        <div id="class5"  class="courses">
+            <p>course id:</p>
+            <input type="text" id="put5">
+            </div>
+                        <div id="class6"  class="courses">
+            <p>course id:</p>
+            <input type="text" id="put6">
+            </div>
+            <div id="class7"  class="courses">
+            <p>course id:</p>
+            <input type="text" id="put7">
+            </div>
+           
+        </form>
+         </div>
+        <div id="getcourse-r">
+        <button id="confirm" class="courses" onclick="StoreCourse();">confirm</button>
+        </div>
+    </body>
+</html>
