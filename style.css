@@ -3,8 +3,9 @@ body form{
     display: inline;
 }
 /* Dropdown Button */
-#selection p{
+#selection h5{
     display: inline;
+    margin-right: 20px;
 }
 
 #courselist p{
@@ -13,6 +14,7 @@ body form{
 
 .courses{
     margin: 20px;
+    
 }
 
 
@@ -24,4 +26,38 @@ body form{
 
 #confirm{
    visibility: hidden; 
+   
+}
+
+#courselist input{
+     border-style: inset;
+    border-radius: 25px;
+}
+
+#header {
+   
+    text-align: center;
+    height: 300px;
+    font-size: 30px;
+    color: ;
+}
+
+#header h1{
+    margin-top: 0px;
+    padding-top: 100px;
+}
+
+#selection{
+    text-align: center;
+    margin-top: 150px;
+    font-size: 20px;
+}
+
+#getcourse-l {
+    margin-left: 550px;
+}
+body{
+    background-image: url(img/uniersity_sign_-_banner.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
