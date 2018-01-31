@@ -1,0 +1,27 @@
+body form{
+    visibility: hidden;
+    display: inline;
+}
+/* Dropdown Button */
+#selection p{
+    display: inline;
+}
+
+#courselist p{
+      display: inline;
+}
+
+.courses{
+    margin: 20px;
+}
+
+
+#getcourse-l {
+    float: left;
+    width: 200px;
+    overflow-x: hidden;
+}
+
+#confirm{
+   visibility: hidden; 
+}
