@@ -13,7 +13,7 @@ function DisplayCourseNum(){
    document.getElementById("confirm").style.visibility = "visible";
     
 }
-var courses;
+
 function StoreCourse(){
     var temp = document.getElementById("NumCourse");
     num = temp.options[temp.selectedIndex].text;
@@ -21,8 +21,17 @@ function StoreCourse(){
         if(document.getElementById("put"+i).value == null ||
           document.getElementById("put"+i).value == ""){
             alert("Please input all your courses or change the number of course you will take");
+            break;
         }
     }
+    
+     for (var i = 1; i<= num; i++){
+        courses.push(document.getElementById("put"+i).value);
+     }
+    
+         for (var i = 1; i<= num; i++){
+        console.log(courses[i]);
+     }
     
     
 }
