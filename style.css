@@ -18,6 +18,11 @@ body form{
     margin-right: 20px;
 }
 
+#selection p{
+    display: inline;
+    margin-right: 20px;
+}
+
 #courselist p{
       display: inline;
 }
@@ -27,7 +32,9 @@ body form{
     
 }
 
-
+#year {
+    width: 50px;
+}
 #getcourse-l {
     float: left;
     width: 200px;
@@ -47,7 +54,7 @@ body form{
 #header {
    
     text-align: center;
-    height: 300px;
+    height: 150px;
     font-size: 30px;
     color: ;
 }

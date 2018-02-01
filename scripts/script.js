@@ -3,8 +3,9 @@ var API_KEY = "009a4e32df45a5a69cd1f13fd2a1660b";
 var num = 0;  
 var courses = [];
 
-var link = "http://api.uwaterloo.ca/v2/courses/MATH/135.json?key=$(009a4e32df45a5a69cd1f13fd2a1660b)";
 
+var prefix="https://api.uwaterloo.ca/v2/terms/"
+var postfix = "/schedule.json?key=$(009a4e32df45a5a69cd1f13fd2a1660b)"
 
 
 
@@ -16,6 +17,31 @@ function ttt(){
 });
 }
 
+function buildUrl(name,year,term){
+    var courseName = "/"+ name[0];
+    var courseNumber = "/"+name[1];
+    if (term === "fall"){
+        var num = "9";
+    }else if (term === "winter"){
+        var num = "1";
+    }else if  (term === "spring"){
+        var num = "5";
+    }
+    var lastDigit = year%100;
+    var courseterm = "1" + lastDigit + num + courseName + courseNumber;
+    return prefix+courseterm+postfix;
+}
+// request the Api from uw
+function requestApi(CourseName,year,term){
+    var course_str = CourseName.split(" ");
+    var url = buildUrl(course_str,year,term);
+     $.getJSON(url, function(data) {
+        console.log(data);
+    //data is the JSON string
+});
+}
+
+// Display different input bars
 function DisplayCourseNum(){
 
     for (var i = 1; i<= 7; i++){
@@ -30,11 +56,23 @@ function DisplayCourseNum(){
     
 }
 
+// Store the courses after user clicking confirm
 function StoreCourse(){
     //make sure the array is empty
     courses = [];
     var temp = document.getElementById("NumCourse");
     num = temp.options[temp.selectedIndex].text;
+    temp = document.getElementById("year");
+    var year = temp.value;
+    
+    if (year < 2000 || year > ((new Date()).getFullYear() +1)) 
+    {
+        alert("Please input a valid year");
+        return;
+    }
+    temp = document.getElementById("term");
+    var term = temp.value;
+    console.log(term);
     // check if there are any invalid input
     for (var i = 1; i<= num; i++){
         if(document.getElementById("put"+i).value == null ||
@@ -43,24 +81,26 @@ function StoreCourse(){
             return;
         }
     }
-    
      for (var i = 1; i<= num; i++){
         courses.push(document.getElementById("put"+i).value);
      }
-    
-         for (var i = 0; i< num; i++){
-        console.log(courses[i]);
+        for (var i = 0; i< num; i++){
+       // console.log(courses[i]);
+        requestApi(courses[i],year,term);
      }
     
     
 }
 
+var notbuild = true;
 function LoadDataList(){
+    if (notbuild)
+    {
+        notbuild = false;
  var dataList = document.getElementById('coursename');
 var input = document.getElementById('put1');
     // Create a new XMLHttpRequest.
 var request = new XMLHttpRequest();
-
 // Handle state changes for the request.
 request.onreadystatechange = function(response) {
   if (request.readyState === 4) {
@@ -93,7 +133,8 @@ input.placeholder = "Loading options...";
 // Set up and make the request.
 request.open('GET', 'html-elements.json', true);
 request.send();
-    
+        
+    }
 }
 
 
