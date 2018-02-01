@@ -1,0 +1,14 @@
+{
+  "name": "uwaterloo-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "009a4e32df45a5a69cd1f13fd2a1660b"
+  ],
+  "author": "",
+  "license": "ISC"
+}

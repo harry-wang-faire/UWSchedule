@@ -1,10 +1,26 @@
+body{
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+  
+    
+}
+
 body form{
     visibility: hidden;
     display: inline;
 }
+
+
 /* Dropdown Button */
+#selection h5{
+    display: inline;
+    margin-right: 20px;
+}
+
 #selection p{
     display: inline;
+    margin-right: 20px;
 }
 
 #courselist p{
@@ -13,9 +29,12 @@ body form{
 
 .courses{
     margin: 20px;
+    
 }
 
-
+#year {
+    width: 50px;
+}
 #getcourse-l {
     float: left;
     width: 200px;
@@ -24,4 +43,39 @@ body form{
 
 #confirm{
    visibility: hidden; 
+   
 }
+
+#courselist input{
+     border-style: inset;
+    border-radius: 25px;
+}
+
+#header {
+   
+    text-align: center;
+    height: 150px;
+    font-size: 30px;
+    color: ;
+}
+
+#header h1{
+    margin-top: 0px;
+    padding-top: 100px;
+}
+
+#selection{
+    text-align: center;
+    margin-top: 150px;
+    font-size: 20px;
+}
+
+#getcourse-l {
+  margin: auto;
+    position: absolute;
+  float: left;
+    left: 0;
+    right: 0;
+    width: 200px;
+}
+

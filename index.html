@@ -2,13 +2,17 @@
 <html>
 <head>
     <link href="style.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src = "scripts/require.js"></script>
      <script type="text/javascript" src = "scripts/script.js"></script>
     </head>
     <body>
+        <div id = "header">
+           <h1> Welcome to UWSchedule </h1>
+        </div>
         <div id="selection">
-<p>Please input the number of the course you are going to take</p>
-<select id = "NumCourse" onchange="DisplayCourseNum();">
+<h5>Please input the number of the course you are going to take</h5>
+<select id = "NumCourse" onchange="DisplayCourseNum();LoadDataList();">
      <option disabled selected value> -- select a number -- </option>
      <option value = "1"> 1</option>
      <option value = "2"> 2</option>
@@ -18,42 +22,53 @@
      <option value = "6"> 6</option>
      <option value = "7"> 7</option>
 </select>
+            <button id="confirm" class="courses" onclick="StoreCourse(); ">confirm</button> <br />
+            <p>Please input the term you want your schedule</p> 
+            <input type="text" id="year">
+            <select id ="term">
+                <option value = "fall">Fall</option>
+                <option value = "fall">Winter</option>
+                <option value = "fall">Spring</option>
+            </select>
             </div>
+        
         <div id="getcourse-l">
-        <form id="courselist">
+        <form id="courselist" autocomplete="on">
             <div id="class1" class="courses">
             <p>course id:</p>
-            <input type="text" id="put1">
+            <input type="text" id="put1" list="coursename">
             </div>
                         <div id="class2"  class="courses">
             <p>course id:</p>
-            <input type="text" id="put2">
+            <input type="text" id="put2" list="coursename">
             </div>
                         <div id="class3"  class="courses">
             <p>course id:</p>
-            <input type="text" id="put3">
+            <input type="text" id="put3" list="coursename">
             </div>
                         <div id="class4"  class="courses">
             <p>course id:</p>
-            <input type="text" id="put4">
+            <input type="text" id="put4" list="coursename">
             </div>
                         <div id="class5"  class="courses">
             <p>course id:</p>
-            <input type="text" id="put5">
+            <input type="text" id="put5" list="coursename">
             </div>
                         <div id="class6"  class="courses">
             <p>course id:</p>
-            <input type="text" id="put6">
+            <input type="text" id="put6" list="coursename">
             </div>
             <div id="class7"  class="courses">
             <p>course id:</p>
-            <input type="text" id="put7">
+            <input type="text" id="put7" list="coursename">
             </div>
+            
            
         </form>
          </div>
-        <div id="getcourse-r">
-        <button id="confirm" class="courses" onclick="StoreCourse();">confirm</button>
-        </div>
+        
+        <datalist id="coursename">
+           
+            </datalist>
     </body>
 </html>
