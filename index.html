@@ -8,10 +8,10 @@
     </head>
     <body>
         <div id = "header">
-           <h1 onclick="ttt();"> Welcome to UWSchedule </h1>
+           <h1> Welcome to UWSchedule </h1>
         </div>
         <div id="selection">
-<h5 onclick="get_">Please input the number of the course you are going to take</h5>
+<h5>Please input the number of the course you are going to take</h5>
 <select id = "NumCourse" onchange="DisplayCourseNum();LoadDataList();">
      <option disabled selected value> -- select a number -- </option>
      <option value = "1"> 1</option>
@@ -22,8 +22,16 @@
      <option value = "6"> 6</option>
      <option value = "7"> 7</option>
 </select>
-             <button id="confirm" class="courses" onclick="StoreCourse(); ">confirm</button>
+            <button id="confirm" class="courses" onclick="StoreCourse(); ">confirm</button> <br />
+            <p>Please input the term you want your schedule</p> 
+            <input type="text" id="year">
+            <select id ="term">
+                <option value = "fall">Fall</option>
+                <option value = "fall">Winter</option>
+                <option value = "fall">Spring</option>
+            </select>
             </div>
+        
         <div id="getcourse-l">
         <form id="courselist" autocomplete="on">
             <div id="class1" class="courses">
