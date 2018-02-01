@@ -35,6 +35,8 @@ function buildUrl(name,year,term){
 function requestApi(CourseName,year,term){
     var course_str = CourseName.split(" ");
     var url = buildUrl(course_str,year,term);
+    //this method can't handle errors, write a function to determine
+    // if it did successfully
      $.getJSON(url, function(data) {
         console.log(data);
     //data is the JSON string
@@ -75,15 +77,30 @@ function StoreCourse(){
     console.log(term);
     // check if there are any invalid input
     for (var i = 1; i<= num; i++){
-        if(document.getElementById("put"+i).value == null ||
-          document.getElementById("put"+i).value == ""){
+        var val = document.getElementById("put"+i).value;
+        var sp = val.split(" ");
+        if(val === null || val === ""){
             alert("Please input all your courses or change the number of course you will take");
             return;
         }
+       if (sp[1] === undefined || sp[2] != undefined) {
+        alert("Some courses you inputed is not a valid course");
+        return;
+    }
     }
      for (var i = 1; i<= num; i++){
         courses.push(document.getElementById("put"+i).value);
      }
+    for (var i = 0; i< num; i++){
+        if (i!=num-1)   {
+        for (var j = i+1; j < num; j++){
+            if (courses[j] === courses[i]){
+                alert("Please don't put same coure twice");
+                return;
+            }
+            }
+        }
+    }
         for (var i = 0; i< num; i++){
        // console.log(courses[i]);
         requestApi(courses[i],year,term);
