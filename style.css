@@ -1,7 +1,17 @@
+body{
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+  
+    
+}
+
 body form{
     visibility: hidden;
     display: inline;
 }
+
+
 /* Dropdown Button */
 #selection h5{
     display: inline;
@@ -54,10 +64,11 @@ body form{
 }
 
 #getcourse-l {
-    margin-left: 550px;
+  margin: auto;
+    position: absolute;
+  float: left;
+    left: 0;
+    right: 0;
+    width: 200px;
 }
-body{
-    background-image: url(img/uniersity_sign_-_banner.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-}
+

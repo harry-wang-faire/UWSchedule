@@ -1,12 +1,21 @@
-/*var uwaterlooApi = require('uwaterloo-api'); 
 
-var uwclient = new uwaterlooApi({
-  API_KEY : '009a4e32df45a5a69cd1f13fd2a1660b'
-});
-*/
-
+var API_KEY = "009a4e32df45a5a69cd1f13fd2a1660b";
 var num = 0;  
 var courses = [];
+
+var link = "http://api.uwaterloo.ca/v2/courses/MATH/135.json?key=$(009a4e32df45a5a69cd1f13fd2a1660b)";
+
+
+
+
+
+function ttt(){
+    $.getJSON("https://api.uwaterloo.ca/v2/terms/1181/CS/115/schedule.json?key=$(009a4e32df45a5a69cd1f13fd2a1660b)", function(data) {
+        console.log(data);
+    //data is the JSON string
+});
+}
+
 function DisplayCourseNum(){
 
     for (var i = 1; i<= 7; i++){
@@ -22,8 +31,11 @@ function DisplayCourseNum(){
 }
 
 function StoreCourse(){
+    //make sure the array is empty
+    courses = [];
     var temp = document.getElementById("NumCourse");
     num = temp.options[temp.selectedIndex].text;
+    // check if there are any invalid input
     for (var i = 1; i<= num; i++){
         if(document.getElementById("put"+i).value == null ||
           document.getElementById("put"+i).value == ""){
@@ -83,3 +95,5 @@ request.open('GET', 'html-elements.json', true);
 request.send();
     
 }
+
+
