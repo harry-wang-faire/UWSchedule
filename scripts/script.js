@@ -76,7 +76,7 @@ function StoreCourse() {
 	
 	temp = document.getElementById("term");
 	var term = temp.value;
-    console.log(term); // check if all inputs are valid
+	console.log(term); // check if all inputs are valid
 	
 	for (var i = 1; i <= num; i++) {
 		var val = document.getElementById("put"+i).value;
