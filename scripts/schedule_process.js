@@ -62,7 +62,7 @@ function search(courses, year, term, curSchedule, finished, total) {
 	for (var i1 = 0; i1 < lec.length; i1++) {
 		for (var i2 = 0; i2 < tut.length; i2++) {
 			for (var i3 = 0; i3 < lab.length; i3++) {
-				for (var i4 = 0; i1 < tst.length; i4++) {
+				for (var i4 = 0; i4 < tst.length; i4++) {
 					cur = curSchedule;
 					cur.push(lec[i1]);
 					cur.push(tut[i2]);
