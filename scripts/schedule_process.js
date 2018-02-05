@@ -34,11 +34,11 @@ function search(courses, year, term, curSchedule, finished, total) {
 	for (var i = 0; i < data.length; i++) { // classify the sections for a course
 		if (data[i].campus === "ONLN ONLINE") {
 			ol.push(data[i]);
-		} else if (data[i].section.match(/([a-z]+)/g) === "LEC") {
+		} else if (data[i].section.match(/([A-Z]+)/g) === "LEC") {
 			lec.push(data[i]);
-		} else if (data[i].section.match(/([a-z]+)/g) === "TUT") {
+		} else if (data[i].section.match(/([A-Z]+)/g) === "TUT") {
 			tut.push(data[i]);
-		} else if (data[i].section.match(/([a-z]+)/g) === "LAB") {
+		} else if (data[i].section.match(/([A-Z]+)/g) === "LAB") {
 			lab.push(data[i]);
 		} else {
 			tst.push(data[i]);
@@ -74,5 +74,15 @@ function search(courses, year, term, curSchedule, finished, total) {
 				}
 			}
 		}
-	}				
+	}
+	
+	cur = curSchedule;
+	for (i = 0; i < ol.length; i++) {
+		if (ol[i].section.match(/([A-Z]+)/g) === "LEC") {
+			cur.push(ol[i]);
+		}
+		if (checkValidity(cur)) {
+			search(courses, year, term, cur, finished + 1, total);
+		}
+	}
 }
