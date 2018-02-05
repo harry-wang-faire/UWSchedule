@@ -18,7 +18,7 @@ function Test1() {
 }
 
 function buildUrl(name,year,term) {
-	var courseName = "/" + name.match(/([a-z])+/gi);
+	var courseName = "/" + name.match(/([a-z]+)/gi);
 	var courseNumber = "/" + name.match(/\d+/gi);
 	var month = "";
 	
@@ -41,7 +41,7 @@ function requestApi(CourseName,year,term) {
 	//this method can't handle errors, write a function to determine
 	// if it did successfully
 	$.getJSON(url, function(data) {
-		console.log(data);
+		console.log(data.data);
 		//data is the JSON string
 	 });
 }
@@ -76,7 +76,6 @@ function StoreCourse() {
 	
 	temp = document.getElementById("term");
 	var term = temp.value;
-	console.log(term); // check if all inputs are valid
 	
 	for (var i = 1; i <= num; i++) {
 		var val = document.getElementById("put"+i).value;
@@ -86,8 +85,6 @@ function StoreCourse() {
 		}
 		var courseName = "/" + val.toUpperCase().match(/([A-Z])+/g);
 		var courseNumber = "/" + val.match(/\d+/g);
-		console.log(courseName);
-		console.log(courseNumber);
 		if (courseName === "" || courseNumber === "") {
 			alert(`Course${i} is invalid`);
 			return;
