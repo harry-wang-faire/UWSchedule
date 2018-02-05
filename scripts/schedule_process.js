@@ -15,7 +15,7 @@ function checkValidity(curSchedule) { // check if a schedule contains no conflic
 	});
 	
 	for (var i = 1; i < timetable.length; i++) {
-		if (StandardTime(timetable[i - 1].end_time) < StandardTime(timetable[i].start_time)) {
+		if (StandardTime(timetable[i - 1].end_time) > StandardTime(timetable[i].start_time)) {
 			return false;
 		}
 	}
