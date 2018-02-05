@@ -78,7 +78,7 @@ function search(courses, year, term, curSchedule, finished, total) {
 	
 	cur = curSchedule;
 	for (i = 0; i < ol.length; i++) {
-		if (ol[i].section.match(/([A-Z]+)/g) === "LEC") {
+		if (ol[i].section.match(/([A-Z]+)/g) === "TST") {
 			cur.push(ol[i]);
 		}
 		if (checkValidity(cur)) {
