@@ -2,6 +2,7 @@
 
 var ScheduleNum = 0;
 var schedule = [];
+var emptyCourse = {classes : [{start_time : "0:00", end_time : "0:00"}], section : "NULL"};
 
 function StandardTime(time) { // use the minutes only to record time
 	var sp = time.split(":");
@@ -11,11 +12,11 @@ function StandardTime(time) { // use the minutes only to record time
 function checkValidity(curSchedule) { // check if a schedule contains no conflicts
 	var timetable = curSchedule;
 	timetable.sort(function(a, b) {
-		return StandardTime(a.start_time) - StandardTime(b.start_time);
+		return StandardTime(a.classes[0].start_time) - StandardTime(b.classes[0].start_time);
 	});
 	
 	for (var i = 1; i < timetable.length; i++) {
-		if (StandardTime(timetable[i - 1].end_time) > StandardTime(timetable[i].start_time)) {
+		if (StandardTime(timetable[i - 1].classes[0].end_time) > StandardTime(timetable[i].classes[0].start_time)) {
 			return false;
 		}
 	}
