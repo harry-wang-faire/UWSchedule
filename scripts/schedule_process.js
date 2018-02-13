@@ -2,7 +2,7 @@
 
 var ScheduleNum = 0;
 var schedule = [];
-var emptyCourse = {classes : [{start_time : "0:00", end_time : "0:00"}], section : "NULL"};
+var emptyCourse = {classes : [{"start_time" : "0:00", "end_time" : "0:00"}], section : "NULL"};
 
 function StandardTime(time) { // use the minutes only to record time
 	var sp = time.split(":");
