@@ -4,8 +4,8 @@ var API_KEY = "009a4e32df45a5a69cd1f13fd2a1660b"; // the key for UW-API
 var num = 0;
 var courses = [];
 
-var prefix="https://api.uwaterloo.ca/v2/terms/";
-var postfix = "/schedule.json?key=$(009a4e32df45a5a69cd1f13fd2a1660b)";
+var prefix = "https://api.uwaterloo.ca/v2/terms/";
+var postfix = `/schedule.json?key=$(${API_KEY})`;
 // components of url for API
 
 
@@ -18,8 +18,8 @@ function Test1() {
 }
 
 function buildUrl(name,year,term) {
-	var courseName = "/" + name.match(/([a-z]+)/gi);
-	var courseNumber = "/" + name.match(/\d+/gi);
+	var courseName = "/" + name.match(/^([a-z]+)/gi);
+	var courseNumber = "/" + name.match(/\d+(E|e)?$/gi);
 	var month = "";
 	
 	if (term === "Fall") {
