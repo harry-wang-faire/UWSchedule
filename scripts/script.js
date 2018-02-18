@@ -18,8 +18,8 @@ function Test1() {
 }
 
 function buildUrl(name,year,term) {
-	var courseName = "/" + name.match(/([a-z]+)/gi);
-	var courseNumber = "/" + name.match(/\d+(E|e)?/gi);
+	var courseName = "/" + name.match(/^([a-z]+)/gi);
+	var courseNumber = "/" + name.match(/\d+(E|e)?$/gi);
 	var month = "";
 	
 	if (term === "Fall") {
