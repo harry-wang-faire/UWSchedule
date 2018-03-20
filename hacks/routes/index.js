@@ -50,10 +50,11 @@ function StandardTime(time) { // use the minutes only to record time
 
 function checkValidity(curSchedule) { // check if a schedule contains no conflicts
 	var timetable = curSchedule;
-	timetable.sort(function(a, b) {
-		logger.log(curSchedule);
-		logger.log(curSchedule[0].classes);
-		return StandardTime(a.classes[0].start_time) - StandardTime(b.classes[0].start_time);
+    timetable.sort(function (a, b) {
+        //logger.log(a.classes[0].date.start_time);
+      //  logger.log(util.inspect(curSchedule[0]));
+
+		return StandardTime(a.classes[0].date.start_time) - StandardTime(b.classes[0].date.start_time);
 	});
 	
 	for (var i = 1; i < timetable.length; i++) {
@@ -153,7 +154,7 @@ var courses = [];
 router.get('/', function(req, res, next) {
  
 search(["cs246"], 2016, "Fall", [], 0, 1);
-//logger.log(schedule);
+logger.log(schedule);
 
 res.render('index', { title: 'Express' });
 });
