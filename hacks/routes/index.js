@@ -22,12 +22,12 @@ var uwclient = new uwaterlooApi({
 
 var ScheduleNum = 0;
 var schedule = [];
-var emptyCourse = {classes : [{start_time : "0:00", end_time : "0:00"}], section : "NULL"};
+var emptyCourse = {classes : [ { date : {start_time : "0:00", end_time : "0:00"} }], section : "NULL"};
 
 
 function buildUrl(name,year,term) {
 	var courseName = "/" + name.match(/^([a-z]+)/gi);
-	var courseNumber = "/" + name.match(/\d+(E|e)?$/gi);
+	var courseNumber = "/" + name.match(/\d+[a-z]?$/gi);
 	var month = "";
 	
 	if (term === "Fall") {
@@ -49,16 +49,17 @@ function StandardTime(time) { // use the minutes only to record time
 }
 
 function checkValidity(curSchedule) { // check if a schedule contains no conflicts
-	var timetable = curSchedule;
+	var timetable = curSchedule.slice(0);
     timetable.sort(function (a, b) {
-        //logger.log(a.classes[0].date.start_time);
-      //  logger.log(util.inspect(curSchedule[0]));
-
-		return StandardTime(a.classes[0].date.start_time) - StandardTime(b.classes[0].date.start_time);
+      //  logger.log(a);
+       // logger.log(util.inspect(a));
+       // logger.log(util.inspect(a.classes[0].date.start_time));
+	return StandardTime(a.classes[0].date.start_time) - StandardTime(b.classes[0].date.start_time);
 	});
 	
 	for (var i = 1; i < timetable.length; i++) {
-		if (StandardTime(timetable[i - 1].classes[0].end_time) > StandardTime(timetable[i].classes[0].start_time)) {
+		if (StandardTime(timetable[i - 1].classes[0].date.end_time) > StandardTime(timetable[i].classes[0].date.start_time)) 
+		{
 			return false;
 		}
 	}
@@ -70,6 +71,7 @@ function search(courses, year, term, curSchedule, finished, total) {
 	if (finished === total) {
 		ScheduleNum++;
 		schedule.push(curSchedule);
+		logger.log(schedule);
 		return;
 	}
 	
@@ -81,7 +83,11 @@ var lec = [], tut = [], lab = [], tst = [], ol = [];
   	var data = res.data;
   	//logger.log('LEC 002'.match(/([A-Z]+)/g)[0]);
 	for (var i = 0; i < data.length; i++) { // classify the sections for a course
-		if (data[i].campus === "ONLN ONLINE") {
+		if (data[i].campus === "ONLN ONLINE" || data[i].campus === "ONLNR ONLINE" ) {
+			data[i].classes[0].date.start_time = '0:00';
+			data[i].classes[0].date.end_time = '0:00';
+			//logger.log(data[i].classes[0]);
+			//logger.log(99999)
 			ol.push(data[i]);
 		} else if (data[i].section.match(/([A-Z]+)/g)[0] === "LEC") {
 			lec.push(data[i]);
@@ -106,30 +112,32 @@ var lec = [], tut = [], lab = [], tst = [], ol = [];
 	if (tst.toString() == "") {
 		tst.push(emptyCourse);
 	}
+	//logger.log(ol);
 	/*logger.log(lec);
 	logger.log(util.inspect(lec,false,null));
 	logger.log(util.inspect(tut,false,null));
 	logger.log(util.inspect(lab,false,null));
 	logger.log(util.inspect(tst,false,null));
+	
 logger.log(lec.length);
 logger.log(tut.length);
 logger.log(lab.length);
 logger.log(tst.length);
-	*/
+*/	
 	var cur = [];
 	for (var i1 = 0; i1 < lec.length; i1++) {
 		for (var i2 = 0; i2 < tut.length; i2++) {
 			for (var i3 = 0; i3 < lab.length; i3++) {
 				for (var i4 = 0; i4 < tst.length; i4++) {
-					cur = curSchedule;
+					cur = curSchedule.slice(0);
 					cur.push(lec[i1]);
 					cur.push(tut[i2]);
 					cur.push(lab[i3]);
 					cur.push(tst[i4]);
-					//logger.log(util.inspect(cur[0].classes,false,null));
+					//logger.log(curSchedule);
 					if (checkValidity(cur)) {
 						search(courses, year, term, cur, finished + 1, total);
-						logger.log(++count);
+					//	logger.log(++count);
 
 					}
 				}
@@ -153,8 +161,8 @@ var courses = [];
 /* GET home page. */
 router.get('/', function(req, res, next) {
  
-search(["cs246"], 2016, "Fall", [], 0, 1);
-logger.log(schedule);
+search(["emls129r"], 2018, "Winter", [], 0, 1);
+//logger.log(schedule);
 
 res.render('index', { title: 'Express' });
 });
